@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% set video_url = "https://twitch.tv/videos/" + video.id %}
+
+{% block title %}
+Clips for "{{video.title}}"
+{% endblock %}
+
+{% block main %}
+<h1>
+Clips for
+<a {{ {"href": video_url } | xmlattr }}>
+"{{video.title}}"
+</a>
+by
+<a {{ {"href": "https://twitch.tv/" + video.owner.login } | xmlattr}}>
+{{video.owner.displayName}}
+</a>
+</h1>
+	{% for clip in clips %}
+	<article class="clip">
+		<a {{ {"href": clip.url } | xmlattr }}>
+			<h2>
+				{{clip.title}}
+			</h2>
+		</a>
+		<p class="views">{{clip.viewCount}} views</p>
+		<p class="timestamp">
+			<a {{ {"href": video_url + "?t=" + clip.formatted_timestamp } | xmlattr }}>
+			{{clip.formatted_timestamp}}</a>
+			in
+		</p>
+		{# Man do I hate Twitch embeds requiring the parent domain. #}
+		{# <iframe {{ {"src": clip.embedURL} | xmlattr }}>Embedding of clip</iframe> #}
+	</article>
+	{% endfor %}
+{% endblock %}

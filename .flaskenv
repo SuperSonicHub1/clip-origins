@@ -1,0 +1,2 @@
+FLASK_APP=clip_origins
+FLASK_ENV=development

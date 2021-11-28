@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block main %}
+<h1>Clip Origins</h1>
+<p>Get all clips birthed from a Twitch VOD:</p>
+<form action="/clips" method="get">
+	<label>
+		VOD ID:
+		<input type="number" name="id" id="id">
+	</label>
+	<br>
+	<label>
+		Sort method
+		<select name="sort-type" id="sort-type">
+			<option value="chrono" selected>Chronological order</option>
+			<option value="popular" selected>Popular order (view count)</option>
+		</select>
+	</label>
+	<br>
+	<label>
+		<input type="checkbox" name="reversed" id="reversed">
+		Reversed	
+	</label>
+	<brO>
+	<button type="submit">Submit!</button>
+</form>
+{% endblock %}
